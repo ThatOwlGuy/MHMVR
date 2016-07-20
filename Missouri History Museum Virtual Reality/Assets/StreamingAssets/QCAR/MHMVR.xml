@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="CoolPapa" size="1.000000 1.581250" />
+    <ImageTarget name="BlackDrummingGroup" size="1.000000 0.811250" />
+    <ImageTarget name="Bob_Wilkinson_Barber_of_the_Southern_Hotel" size="1.000000 1.153750" />
+    <ImageTarget name="Riot_Games_logo" size="1.000000 0.776667" />
+  </Tracking>
+</QCARConfig>

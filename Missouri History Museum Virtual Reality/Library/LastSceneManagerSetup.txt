@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Standard Assets/Scenes/Test/General Test Scene.unity
+- path: Assets/Standard Assets/Scenes/Final/Capturing The City.unity
   isLoaded: 1
   isActive: 1
