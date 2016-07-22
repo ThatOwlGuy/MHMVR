@@ -2,47 +2,54 @@
 //import Cardboard.SDK;
 
 public class TouchHandler extends MonoBehaviour{
-	private static var tapTime : float;
+	@SerializeField
+	private var tapTime : float;
+	private var timeOut : float;
 
 	enum TouchType{NoTap = 0, Tap = 1, DoubleTap = 2, Hold = 3};
 
 	public static var curTouch : TouchType;
 	
-	private var justPressed : boolean = false;
-	private var held : boolean = false;
+	private var justTapped : boolean = false;
 	
+	//Cheacks for "taps" for mouse-click equivalents
 	function Update(){
-		if(curTouch == TouchType.DoubleTap){
-			curTouch = TouchType.NoTap;
-		}
-	
-		if(Input.GetMouseButtonDown(0) || justPressed){
-			if(Time.time > tapTime){
-				tapTime = Time.time + 1;
-				curTouch = TouchType.Tap;
-				print("Tap!");
-			}else{
-				curTouch = TouchType.DoubleTap;
-				print("DoubleTap!");
-			}
-		}else if( Input.GetMouseButton(0) || held){
-			curTouch = TouchType.Hold;
-			print("Hold!!");
-		}else if ( !(Input.GetMouseButton(0) || held) ){
-			curTouch = TouchType.NoTap;
+		//Starts tapTime counter when screen is touched
+		if(Input.GetButtonDown(0)){
+			timeOut = Time.time + tapTime;
+		}else if(Input.GetMouseButtoUp(0)){	//Taps are registered on release
+			JustTapped();
+		}else if(Input.GetMouseButton(0)){	//Holds are checked if we get the mouse at all
+			Held();
+		}else{
+			NoPress();			//no activity brings it to a NotPressedState
 		}
 	}
 	
-	function JustPressed(){
-		justPressed = true;
+	//if the s
+	function JustTapped(){
+		if(justTapped && InTapTime()){
+			curTouch = TouchType.DoubleTap;
+		}else{
+			curTouch = TouchType.Tap;
+			justTapped = true;
+		}
 	}
 	
 	function Held(){
-		held = true;
+		if(InTapTime()){
+			return;
+		}
+		
+		curTouch = TouchType.Hold;
 	}
 	
 	function NoPress(){
-		justPressed = false;
-		held = false;
+		justTapped = InTapTime();
+		curTouch = TouchType.NoTap;
+	}
+	
+	function InTapTime() : boolean{
+		return (timeOut > Time.time);
 	}
 }
