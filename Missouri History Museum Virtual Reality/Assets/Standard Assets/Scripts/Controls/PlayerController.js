@@ -68,9 +68,7 @@ public class PlayerController extends MonoBehaviour{
 			return;
 		}
 		
-		if(th.curTouch == TouchHandler.TouchType.Hold){
-			isMoving = true;
-		}else if(th.curTouch == TouchHandler.TouchType.Tap || th.curTouch == TouchHandler.TouchType.DoubleTap){
+		if(th.curTouch == TouchHandler.TouchType.Tap || th.curTouch == TouchHandler.TouchType.DoubleTap){
 			isMoving = !isMoving;
 		}
 		
@@ -84,11 +82,7 @@ public class PlayerController extends MonoBehaviour{
 		
 		var horizontalVelocity : Vector3;
 		
-		if(th.curTouch == TouchHandler.TouchType.Hold){
-			horizontalVelocity = -Vector3.forward/2;
-		}else{
-			horizontalVelocity = Vector3.forward;
-		}
+		horizontalVelocity = Vector3.forward;
 		horizontalVelocity = head.TransformDirection(horizontalVelocity);
 		horizontalVelocity.y = 0.0;
 		
