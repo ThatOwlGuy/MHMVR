@@ -3,7 +3,7 @@
 
 public class TouchHandler extends MonoBehaviour{
 	@SerializeField
-	private var tapTime : float;
+	private var tapTime : float = 0.5f;
 	private var timeOut : float;
 
 	enum TouchType{NoTap = 0, Tap = 1, DoubleTap = 2, Hold = 3};
@@ -15,9 +15,9 @@ public class TouchHandler extends MonoBehaviour{
 	//Cheacks for "taps" for mouse-click equivalents
 	function Update(){
 		//Starts tapTime counter when screen is touched
-		if(Input.GetButtonDown(0)){
+		if(Input.GetMouseButtonDown(0)){
 			timeOut = Time.time + tapTime;
-		}else if(Input.GetMouseButtoUp(0)){	//Taps are registered on release
+		}else if(Input.GetMouseButtonUp(0)){	//Taps are registered on release
 			JustTapped();
 		}else if(Input.GetMouseButton(0)){	//Holds are checked if we get the mouse at all
 			Held();

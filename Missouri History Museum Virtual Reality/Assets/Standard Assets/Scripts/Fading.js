@@ -28,7 +28,7 @@ public class Fading extends MonoBehaviour{
 		}
 		
 		if(faded == true){
-			print("done fading");
+			//print("done fading");
 			faded = false;
 		}
 	}

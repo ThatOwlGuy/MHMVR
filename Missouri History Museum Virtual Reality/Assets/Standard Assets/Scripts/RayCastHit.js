@@ -10,6 +10,8 @@ protected var hit : RaycastHit;
 
 private var curPoint : Vector3;
 
+private var ray : Ray;
+
 function Awake(){
 	var i : int = 0;
 	eye = GameObject.Find(eyeTarget).transform;
@@ -20,7 +22,7 @@ function Update () {
 	
 	//print(" RAYCASTHITUPDATEISRUNNING!");
 
-	var ray = new Ray(eye.transform.position, eye.transform.forward);
+	ray = new Ray(eye.transform.position, eye.transform.forward);
 	
 	if (Physics.Raycast(ray, hit)) {
 		Debug.DrawRay(eye.transform.position, eye.transform.forward * 10, Color.green);
@@ -41,4 +43,8 @@ public function GetPoint(){
 	//print(curObject.name);
 	
 	return curPoint;
+}
+
+public function GetPointAt(thisDistance : float) : Vector3{
+	return ray.GetPoint(thisDistance);
 }
