@@ -109,6 +109,9 @@ public class PlayerController extends MonoBehaviour{
 	}
 	
 	function StepNoise(){
+		if(rig.velocity == Vector3(0, 0, 0))
+			return;
+		
 		if(isMoving){
 			stepTimeOut = Time.time + stepInterval;
 		}
