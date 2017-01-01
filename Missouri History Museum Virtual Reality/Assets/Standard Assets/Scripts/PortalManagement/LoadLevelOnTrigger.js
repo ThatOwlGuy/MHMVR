@@ -19,7 +19,7 @@ function OnTriggerEnter(other : Collider){
 }
 
 function LateUpdate(){
-	if(darthFader.img.color.a == 1){
+	if(darthFader.img.color.a == 1 && loading){
 		Application.LoadLevel(levelToLoad);
 	}
 }

@@ -5,6 +5,8 @@
 @script RequireComponent(AudioSource)
 
 public class PlayerController extends MonoBehaviour{
+	@SerializeField
+	private var myLayerMask : LayerMask;
 	
 	private var th : TouchHandler;
 	
@@ -14,6 +16,7 @@ public class PlayerController extends MonoBehaviour{
 	public var isGrounded : boolean;
 	public var isMoving : boolean;
 	public var speed : float;
+	private var t : float;
 	//public var jumpSpeed : float;
 	
 	public var stepInterval : float;
@@ -48,9 +51,9 @@ public class PlayerController extends MonoBehaviour{
 	private function CheckForGround(){
 		
 		var hit : RaycastHit;
-		var ray = new Ray(transform.position, Vector3.down);
+		//var ray = new Ray(transform.position, Vector3.down);
 
-		if(Physics.Raycast(ray,  hit)){
+		if(Physics.Raycast(transform.position, -transform.up, hit, 1, myLayerMask)){
 			if(Vector3.Distance(transform.position, hit.point) < groundDist){
 				if(!isGrounded){
 					aud.clip = landSound;
@@ -72,6 +75,7 @@ public class PlayerController extends MonoBehaviour{
 			isMoving = true;
 		}else if(th.curTouch == TouchHandler.TouchType.Tap || th.curTouch == TouchHandler.TouchType.DoubleTap){
 			isMoving = !isMoving;
+			t = 0.0f;
 		}
 		
 		if(isMoving){
@@ -91,8 +95,10 @@ public class PlayerController extends MonoBehaviour{
 		}
 		horizontalVelocity = head.TransformDirection(horizontalVelocity);
 		horizontalVelocity.y = 0.0;
-		
-		horizontalVelocity *= Mathf.Lerp(0, speed, Time.deltaTime * Mathf.Lerp(0, 25, Time.time));
+
+		t += Time.deltaTime;
+
+		horizontalVelocity *= Mathf.Lerp(0, speed, t);
 		
 		var verticalVelocity : Vector3;
 		verticalVelocity = Vector3(0, rig.velocity.y, 0);

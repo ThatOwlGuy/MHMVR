@@ -5,11 +5,9 @@ public class Interactor extends RayCastHit{
 	public var maxDistance : int;
 
 	@SerializeField
-	private var reticle : InteractiveReticle;
+	private var progressSpeed : float;
 	@SerializeField
-	public var progressSpeed : float;
-	@SerializeField
-	public var selectProgress : float;
+	private var selectProgress : float;
 	
 	private var curDist : float;
 
@@ -40,11 +38,16 @@ public class Interactor extends RayCastHit{
 			return;
 		}
 		
-		//if there is no progress, consider the curObject and change the reticle's color
+		//if there is no progress, start progressing and make a reticle at the curObject
 		if(selectProgress == 0){
 			selectProgress = 0.01f;
 			consideredObject = curObject;
-			reticle.ChangeColor();
+
+			//Instantiate a LoadingBarCanvas at the object you're activating
+			var lb : GameObject = Instantiate(Resources.Load("LoadingBar"), curObject.transform.position, Quaternion.identity);
+
+			lb.GetComponent(LoadingBar).SetObject(curObject.transform);
+
 		}else if(Time.time > timeOut){
 			IncrementProgress(progressSpeed * Time.deltaTime * 0.25);
 		}
@@ -63,18 +66,20 @@ public class Interactor extends RayCastHit{
 	}
 	
 	private function ResetProgress(){
-		reticle.ChangeColor();
 		selectProgress = 0;
 		UpdateProgress();
 	}
 	
-	private function UpdateProgress(){
-		reticle.UpdateLoadingBar(selectProgress);
-		
-		if(selectProgress > 1){
+	private function UpdateProgress(){		
+		if(selectProgress > 1.1){
+			selectProgress = 1;
 			consideredObject.SendMessage("Triggered");
 			ResetProgress();
 			timeOut = Time.time + 1;
 		}
+	}
+
+	public function GetProgress() : float{
+		return selectProgress;	
 	}
 }

@@ -1,0 +1,9 @@
+TutObject1:This is a panel! In here, colored objects will reveal panels.|To scroll through the text, look DIRECTLY at the button in the bottom-right corner! ||| You got it! Piece of cake! ;-) | Now "X" out of this panel and look at the the blue cube.;
+TutObject2:You can virtually move! On your CardBoard headset there is an impression in the top-right of the viewer. Push that down once to move forward. To stop, push it down again! | Now look to your left and go towards the purple cube.;
+TutObject3:Very good! Now you can go to the Capturing the City! Exhibition|Head over to the glowing white portal to go to the exhibit or look at the green cube to get more information on the VR experience.;
+TutObject4:-Movement-|You can actually move backwards by holding down the button on the Cardbooard Viewer. This could be useful if you get stuck in a corner or something||-Panels-|You can scroll up using the up arrow button or automatically go back to the start of a passage by looking at the home button.;
+n25954:Vertical, black and white photograph showing two men in shirtsleeves walking down the sidewalk. Behind them, a large tavern sign proclaims the imminent imposition of the first stage of Prohibition. It reads: "Bone dry forever / Buy now for the rest of your life / Stop and think what you will pay for a quart after July 1st.";
+n15184:Washington Avenue looking west from Seventh Street.;
+n14762:Olive Street north from Sixth Street.;
+n01554:The Saturday Bath. (Young girl giving boy a shampoo in a washtub).;
+n34516: Group of men standing in front of the Globe Shaving Parlor at 1015 Carr Street, near Tenth Street and Carr Street. J. Tuvil and Co. is located at 910 Carr Street.
