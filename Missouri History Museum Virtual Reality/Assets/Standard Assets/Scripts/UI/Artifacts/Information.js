@@ -26,15 +26,15 @@ public class Information extends MonoBehaviour{
 
 		dist = Vector3.Distance(transform.GetChild(0).position, head.position);
 
-		if(transform.position.y > head.position.y + 0.1){
+		if(transform.position.y > head.position.y){
 			transform.position.y -= Time.deltaTime;
-		}else if(transform.position.y < head.position.y){
+		}else if(transform.position.y < head.position.y - 0.1f){
 			transform.position.y += Time.deltaTime;
 		}
 
-		if(dist > 3.1){
+		if(dist > 4.1f){
 			transform.GetChild(0).localPosition.z +=  Time.deltaTime;
-		}else if (dist < 3){
+		}else if (dist < 4){
 			transform.GetChild(0).localPosition.z -=  Time.deltaTime;
 		}
 	}
